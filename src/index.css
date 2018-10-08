@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Century Gothic";
+  text-transform: lowercase;
+  text-decoration: none;
+  text-align: center;
+  background-color: #fbfbfb;
+}
+a {
+  text-decoration: none;
+  margin: 0 auto;
+}
+
+.App {
+  margin: 0 auto;
+}
+
+.Freestyle:hover {
+  color: rgb(50, 171, 207);
+}
+
+.line {
+  background-color: rgb(50, 171, 207);
+
+  height: 0.3rem;
+  width: 100%;
+}
