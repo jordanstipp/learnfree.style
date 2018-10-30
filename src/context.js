@@ -7,7 +7,28 @@ const reducer = (state, action) => {
     case "START":
       return {
         ...state,
-        sheet: action.payload
+        sheet: action.payload.ready
+      };
+    case "GET_ID":
+      //regex for strings
+      var spreadSheetId = action.payload.url.match(
+        "/spreadsheets/d/([a-zA-Z0-9-_]+)"
+      );
+      if (spreadSheetId) {
+        spreadSheetId = spreadSheetId[0];
+      }
+      spreadSheetId = spreadSheetId.replace("/spreadsheets/d/", "");
+
+      var sheetId = action.payload.url.match("[#&]gid=([0-9]+)");
+      if (sheetId) {
+        sheetId = sheetId[0];
+      }
+      sheetId.slice(5);
+      console.log(spreadSheetId);
+      return {
+        ...state,
+        spId: spreadSheetId,
+        shId: sheetId
       };
     case "LOAD_RHYMES":
       return {
@@ -33,8 +54,10 @@ const reducer = (state, action) => {
 
 export class Provider extends Component {
   state = {
-    spId: "1IFKJ5A3l4PbprvJfx5N7uhVRvwT0v_tKelDcp_7uqO8",
-    shId: "672334735",
+    // spId: "1IFKJ5A3l4PbprvJfx5N7uhVRvwT0v_tKelDcp_7uqO8",
+    // shId: "672334735",
+    spId: "",
+    shId: "",
     loading: true,
     sheet: "",
     dispatch: action => {

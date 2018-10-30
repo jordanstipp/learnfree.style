@@ -18,20 +18,16 @@ class Freestyle extends Component {
     index: 0
   };
 
+  componentWillMount;
   async componentDidMount() {
     //look into updating setstate here
-    if (this.props.context.loading) {
+  }
+  async componentDidUpdate() {
+    if (this.props.context.spId != "" && this.props.context.loading) {
+      console.log(this.props.context.spId);
       window.gapi.load("client", this.initClient);
       document.addEventListener("keydown", this.handleKey.bind(this));
     }
-  }
-  componentWillUpdate() {
-    //look into updating setstate here
-    // if (this.props.context.sheet && this.props.context.loading) {
-    //   window.gapi.load("client", this.initClient);
-    //   document.addEventListener("keydown", this.handleKey.bind(this));
-    // }
-
     if (!this.props.context.loading && this.intervalId) {
       this.setState((state, props) => ({
         index: this.state.index + 1,
@@ -56,7 +52,7 @@ class Freestyle extends Component {
       })
       .then(() => {
         // 3. Initialize and make the API request.
-        load(this.onLoad);
+        load(this.onLoad, this.props.context.spId, this.props.context.shId);
       });
   };
 
