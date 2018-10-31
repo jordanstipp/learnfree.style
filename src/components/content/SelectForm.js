@@ -37,9 +37,9 @@ class SelectForm extends Component {
           return (
             <div className="container">
               <form onSubmit={this.onSubmit.bind(this, dispatch)}>
-                <select>
+                {/* <select>
                   <option value=""> Phase 1 </option>
-                </select>
+                </select> */}
                 <TextInputGroup
                   label="Sheets URL"
                   name="url"

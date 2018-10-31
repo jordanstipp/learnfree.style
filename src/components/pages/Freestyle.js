@@ -68,6 +68,7 @@ class Freestyle extends Component {
       this.setState((state, props) => ({
         intervalId: setInterval(() => this.tick(), 5000)
       }));
+      dispatch({ type: "START", payload: { ready: true } });
     }
   };
 

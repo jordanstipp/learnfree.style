@@ -9,6 +9,7 @@ const reducer = (state, action) => {
         ...state,
         sheet: action.payload.ready
       };
+
     case "GET_ID":
       //regex for strings
       var spreadSheetId = action.payload.url.match(
@@ -20,30 +21,36 @@ const reducer = (state, action) => {
       spreadSheetId = spreadSheetId.replace("/spreadsheets/d/", "");
 
       var sheetId = action.payload.url.match("[#&]gid=([0-9]+)");
+
       if (sheetId) {
         sheetId = sheetId[0];
       }
+      sheetId = sheetId.replace("#gid=", "");
+
       sheetId.slice(5);
-      console.log(spreadSheetId);
       return {
         ...state,
         spId: spreadSheetId,
         shId: sheetId
       };
+
     case "LOAD_RHYMES":
       return {
         ...state,
         rhymes: action.payload[0]
       };
+
     case "LOAD_COMPLETE":
       return {
         ...state,
         loading: action.payload[0]
       };
+
     case "DELETE_LIST":
       return {
         ...state,
         sheet: "",
+        rhymes: "",
         loading: action.payload[1],
         shuffle: false
       };

@@ -4,17 +4,16 @@ import config from "../config";
  * Get the right values from it and assign.
  */
 export async function load(callback, spId, shId) {
-  console.log(spId);
+  console.log(shId + "!C2:E");
   window.gapi.client.load("sheets", "v4", () => {
     window.gapi.client.sheets.spreadsheets.values
       .get({
         spreadsheetId: spId,
-        range: "C2:E"
+        range: "!C2:E"
       })
       .then(
         response => {
           const data = response.result.values;
-          console.log(response);
           if (data) {
             const rhymes =
               data.map(rhymeGroup => ({
