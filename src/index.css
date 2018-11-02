@@ -5,23 +5,25 @@ body {
   text-transform: lowercase;
   text-decoration: none;
   text-align: center;
-  background-color: #fbfbfb;
+  background-color: black;
 }
 a {
   text-decoration: none;
   margin: 0 auto;
+  color: white;
 }
 
 .App {
   margin: 0 auto;
+  color: white;
 }
 
-.Freestyle:hover {
-  color: rgb(50, 171, 207);
+a:hover {
+  color: #ff5722;
 }
 
 .line {
-  background-color: rgb(50, 171, 207);
+  background-color: #ff5722;
 
   height: 0.5rem;
   width: 100%;

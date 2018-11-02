@@ -3,11 +3,11 @@
   position: relative;
   font-weight: bold;
   font-style: italic;
-  color: #707070;
+  color: #ff5722;
 }
 .rhymeComp {
   font-size: 2rem;
-  color: #707070;
+  color: white;
   margin: 1rem;
   display: inline-block;
   font-style: italic;

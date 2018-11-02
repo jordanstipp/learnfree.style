@@ -16,7 +16,7 @@ class App extends Component {
       <Provider>
         <Router>
           <div className="App">
-            <Header branding="LearnFreestyle" />
+            <Header className="title" branding="LearnFreestyle" />
             <Switch>
               <Route exact path="/" component={Modes} />
               <Route exact path="/freestyle" component={Freestyle} />

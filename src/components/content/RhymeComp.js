@@ -8,7 +8,6 @@ const RhymeComp = props => {
       {value => {
         return (
           <div>
-            <h2 className="rhymeComp head"> {type}</h2>
             <span className="rhymeComp body">
               <p>{content}</p>
             </span>
