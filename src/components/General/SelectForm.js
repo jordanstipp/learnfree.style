@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Consumer } from "../../context";
-import TextInputGroup from "../layout/TextInputGroup";
+import TextInputGroup from "../Layout/TextInputGroup";
 
 class SelectForm extends Component {
   state = {

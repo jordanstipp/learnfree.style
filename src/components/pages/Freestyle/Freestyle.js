@@ -1,37 +1,37 @@
 import React, { Component } from "react";
 import Sound from "react-sound";
 
-import { Consumer } from "../../context";
-import Rhyme from "../content/Rhyme";
+import { Consumer } from "../../../context";
+import Rhyme from "./RhymeComp/Rhyme";
 
-import config from "../../config";
-import { load } from "../../functions/spreadsheet";
-import { shuffle } from "../../functions/shuffle";
-import SelectForm from "../content/SelectForm";
-import LoadingAnim from "../content/LoadingAnim";
-import "./Freestyle.css";
+import config from "../../../config";
+import { loadSpreadsheet } from "../../../services/loadSpreadsheet";
+import { shuffle } from "../../../services/shuffle";
+import SelectForm from "../../General/SelectForm";
+import LoadingAnim from "../../General/LoadingAnim";
+import "./css/Freestyle.css";
+
+const INTERVAL_TIME = 7000;
 
 class Freestyle extends Component {
   state = {
     currentRhyme: "",
     intervalId: 0,
+    okSetInt: false,
     index: 0
   };
 
-  componentWillMount;
-  async componentDidMount() {
-    //look into updating setstate here
-  }
-  async componentDidUpdate() {
+  componentDidUpdate() {
     if (this.props.context.spId != "" && this.props.context.loading) {
       console.log(this.props.context.spId);
       window.gapi.load("client", this.initClient);
-      document.addEventListener("keydown", this.handleKey.bind(this));
+      document.addEventListener("keyup", this.handleKey.bind(this));
     }
-    if (!this.props.context.loading && this.intervalId) {
-      this.setState((state, props) => ({
-        index: this.state.index + 1,
-        intervalId: setInterval(() => this.tick(), 5000)
+
+    if (this.state.okSetInt) {
+      this.setState((prevState, props) => ({
+        intervalId: setInterval(() => this.tick(), INTERVAL_TIME),
+        okSetInt: false
       }));
     }
   }
@@ -52,7 +52,11 @@ class Freestyle extends Component {
       })
       .then(() => {
         // 3. Initialize and make the API request.
-        load(this.onLoad, this.props.context.spId, this.props.context.shId);
+        loadSpreadsheet(
+          this.onLoad,
+          this.props.context.spId,
+          this.props.context.shId
+        );
       });
   };
 
@@ -65,37 +69,41 @@ class Freestyle extends Component {
         payload: [rhymes, 1, 1]
       });
       dispatch({ type: "LOAD_COMPLETE", payload: [false, 1, 1, 1] });
-      this.setState((state, props) => ({
-        intervalId: setInterval(() => this.tick(), 5000)
-      }));
       dispatch({ type: "START", payload: { ready: true } });
+      clearInterval(this.state.intervalId);
+      this.setState((prevState, props) => ({
+        intervalId: setInterval(() => this.tick(), INTERVAL_TIME)
+      }));
     }
   };
 
   handleKey(e) {
     if (e.keyCode === 37 && this.state.index !== 0) {
+      clearInterval(this.state.intervalId);
+      console.log("i cleared left interval " + this.state.intervalId);
       this.handleKeyDown("LEFT");
     } else if (
       e.keyCode === 39 &&
       this.state.index !== this.props.context.rhymes.length - 1
     ) {
+      clearInterval(this.state.intervalId);
+      console.log("i cleared right interval " + this.state.intervalId);
       this.handleKeyDown("RIGHT");
     }
   }
 
   handleKeyDown = key => {
-    clearInterval(this.state.intervalId);
     switch (key) {
       case "LEFT":
         this.setState((state, props) => ({
-          index: this.state.index - 1,
-          intervalId: setInterval(() => this.tick(), 5000)
+          index: state.index - 1,
+          okSetInt: true
         }));
         break;
       case "RIGHT":
         this.setState((state, props) => ({
-          index: this.state.index + 1,
-          intervalId: setInterval(() => this.tick(), 5000)
+          index: state.index + 1,
+          okSetInt: true
         }));
         break;
     }
@@ -103,23 +111,18 @@ class Freestyle extends Component {
 
   tick() {
     if (this.state.index !== this.props.context.rhymes.length - 1) {
-      this.setState((state, props) => ({
-        index: this.state.index + 1
+      this.setState((prevState, props) => ({
+        index: prevState.index + 1
       }));
     } else {
-      this.setState((state, props) => ({
+      this.setState((prevState, props) => ({
         index: 0
       }));
     }
   }
 
-  resetTimer() {
-    //Reset Timer
-    clearInterval(this.state.intervalId);
-  }
-
   render() {
-    const { currentRhyme } = this.state;
+    const { currentRhyme, okSetInt } = this.state;
     return (
       <Consumer>
         {value => {

@@ -1,6 +1,6 @@
 import React from "react";
 import ModeSelect from "./ModeSelect";
-import { Consumer } from "../../context";
+import { Consumer } from "../../../context";
 
 const Modes = props => {
   return (
