@@ -1,7 +1,10 @@
 .container {
   font-family: "Century Gothic";
+  position: relative;
   text-transform: lowercase;
   text-align: center;
+  height: 100%;
+  display: block;
 }
 .lds-facebook {
   display: inline-block;

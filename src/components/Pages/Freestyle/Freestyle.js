@@ -10,36 +10,38 @@ import { shuffle } from "../../../services/shuffle";
 import SelectForm from "../../General/SelectForm";
 import LoadingAnim from "../../General/LoadingAnim";
 import "./css/Freestyle.css";
+import SettingsContainer from "../../Layout/SettingsMenu/SettingsContainer";
 
 const INTERVAL_TIME = 7000;
 
 class Freestyle extends Component {
+  constructor(props) {
+    super(props);
+    this.intervalId;
+  }
+
   state = {
     currentRhyme: "",
-    intervalId: 0,
     okSetInt: false,
     index: 0
   };
 
   componentDidUpdate() {
     if (this.props.context.spId != "" && this.props.context.loading) {
-      console.log(this.props.context.spId);
       window.gapi.load("client", this.initClient);
       document.addEventListener("keyup", this.handleKey.bind(this));
     }
 
     if (this.state.okSetInt) {
-      this.setState((prevState, props) => ({
-        intervalId: setInterval(() => this.tick(), INTERVAL_TIME),
-        okSetInt: false
-      }));
+      clearInterval(this.intervalId);
+      this.intervalId = setInterval(() => this.tick(), INTERVAL_TIME);
     }
   }
 
   componentWillUnmount() {
     const { dispatch } = this.props.context;
     dispatch({ type: "DELETE_LIST", payload: [[], true] });
-    clearInterval(this.state.intervalId);
+    clearInterval(this.intervalId);
   }
 
   initClient = () => {
@@ -70,25 +72,31 @@ class Freestyle extends Component {
       });
       dispatch({ type: "LOAD_COMPLETE", payload: [false, 1, 1, 1] });
       dispatch({ type: "START", payload: { ready: true } });
-      clearInterval(this.state.intervalId);
-      this.setState((prevState, props) => ({
-        intervalId: setInterval(() => this.tick(), INTERVAL_TIME)
-      }));
+      clearInterval(this.intervalId);
+      this.intervalId = setInterval(() => this.tick(), INTERVAL_TIME);
     }
   };
 
   handleKey(e) {
     if (e.keyCode === 37 && this.state.index !== 0) {
-      clearInterval(this.state.intervalId);
-      console.log("i cleared left interval " + this.state.intervalId);
+      clearInterval(this.intervalId);
       this.handleKeyDown("LEFT");
     } else if (
       e.keyCode === 39 &&
       this.state.index !== this.props.context.rhymes.length - 1
     ) {
-      clearInterval(this.state.intervalId);
-      console.log("i cleared right interval " + this.state.intervalId);
+      clearInterval(this.intervalId);
       this.handleKeyDown("RIGHT");
+    } else if (this.state.index === 0 && !this.props.context.loading) {
+      this.setState((state, props) => ({
+        index: this.props.context.rhymes.length - 1,
+        okSetInt: true
+      }));
+    } else {
+      this.setState((state, props) => ({
+        index: 0,
+        okSetInt: true
+      }));
     }
   }
 
@@ -122,7 +130,7 @@ class Freestyle extends Component {
   }
 
   render() {
-    const { currentRhyme, okSetInt } = this.state;
+    const { currentRhyme } = this.state;
     return (
       <Consumer>
         {value => {
@@ -136,17 +144,18 @@ class Freestyle extends Component {
                   playbackRate={1}
                   loop={true}
                 />
+                <SettingsContainer />
                 <Rhyme rhyme={this.props.context.rhymes[this.state.index]} />
               </div>
             ) : (
-              <div>
+              <div className="container">
                 <Sound url="advancement.mp3" playStatus={Sound.status.PAUSED} />
                 <LoadingAnim />
               </div>
             );
           } else {
             return (
-              <div>
+              <div className="container">
                 <SelectForm />
               </div>
             );

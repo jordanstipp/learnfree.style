@@ -1,0 +1,25 @@
+.SettingsContainer {
+  background: rgb(252, 137, 137);
+
+  width: 25vw;
+  height: 30vw;
+
+  position: absolute;
+  z-index: 10;
+
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.SettingsButton {
+  background: white;
+
+  width: 5vw;
+  height: 5vw;
+
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 0;
+}

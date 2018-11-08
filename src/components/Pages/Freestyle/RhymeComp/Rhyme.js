@@ -8,26 +8,39 @@ class Rhyme extends Component {
   state = {
     index: 0
   };
+
+  onClick = () => {
+    const { dispatch } = this.props.context;
+    dispatch({ type: "SETTINGS", payload: setting });
+  };
+
   render() {
     return (
       <Consumer>
         {value => {
           const { rhyme } = this.props;
+          const { helpers, definition } = value;
           return (
             <div>
-              <RhymeComp
-                className="subRhyme"
-                type="helpers"
-                content={rhyme.helpers}
-              />
+              {helpers && (
+                <RhymeComp
+                  className="subRhyme"
+                  type="helpers"
+                  content={rhyme.helpers}
+                  onClick={this.onClick}
+                />
+              )}
               <h1 className="rhyme">{rhyme.rhyme}</h1>
               {/* <div className="line"> </div>
                */}
-              <RhymeComp
-                className="subRhyme"
-                type="defintion"
-                content={rhyme.definition}
-              />
+              {definition && (
+                <RhymeComp
+                  className="subRhyme"
+                  type="defintion"
+                  content={rhyme.definition}
+                  onClick={this.onClick}
+                />
+              )}
             </div>
           );
         }}
@@ -36,4 +49,7 @@ class Rhyme extends Component {
   }
 }
 
-export default Rhyme;
+export default props => (
+  <Consumer>{value => <Rhyme {...props} context={value} />}</Consumer>
+);
+// export default Rhyme;
