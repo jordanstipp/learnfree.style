@@ -54,6 +54,19 @@ const reducer = (state, action) => {
         loading: action.payload[1],
         shuffle: false
       };
+
+    case "SETTINGS":
+      if (action.payload === "helpers") {
+        return {
+          ...state,
+          helpers: !state.helpers
+        };
+      } else if (action.payload === "definition") {
+        return {
+          ...state,
+          definition: !state.definition
+        };
+      }
     default:
       return state;
   }
@@ -67,6 +80,8 @@ export class Provider extends Component {
     shId: "",
     loading: true,
     sheet: "",
+    helpers: true,
+    definition: true,
     dispatch: action => {
       this.setState(state => reducer(state, action));
     }

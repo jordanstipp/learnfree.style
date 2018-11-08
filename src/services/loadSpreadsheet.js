@@ -9,7 +9,7 @@ export async function loadSpreadsheet(callback, spId, shId) {
     window.gapi.client.sheets.spreadsheets.values
       .get({
         spreadsheetId: spId,
-        range: "!C2:E"
+        range: "!C4:H"
       })
       .then(
         response => {
@@ -19,7 +19,8 @@ export async function loadSpreadsheet(callback, spId, shId) {
               data.map(rhymeGroup => ({
                 rhyme: rhymeGroup[0],
                 definition: rhymeGroup[1],
-                helpers: rhymeGroup[2]
+                helpers:
+                  rhymeGroup[3] + ", " + rhymeGroup[4] + ", " + rhymeGroup[5]
               })) || [];
             callback({
               rhymes

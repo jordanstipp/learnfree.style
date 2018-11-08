@@ -9,10 +9,10 @@ class Rhyme extends Component {
     index: 0
   };
 
-  onClick = () => {
-    const { dispatch } = this.props.context;
-    dispatch({ type: "SETTINGS", payload: setting });
-  };
+  // onClick = () => {
+  //   const { dispatch } = this.props.context;
+  //   dispatch({ type: "SETTINGS", payload: setting });
+  // };
 
   render() {
     return (
