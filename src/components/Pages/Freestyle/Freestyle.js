@@ -34,7 +34,7 @@ class Freestyle extends Component {
 
     if (this.state.okSetInt) {
       clearInterval(this.intervalId);
-      this.intervalId = setInterval(() => this.tick(), INTERVAL_TIME);
+      //this.intervalId = setInterval(() => this.tick(), INTERVAL_TIME);
     }
   }
 
@@ -64,7 +64,10 @@ class Freestyle extends Component {
 
   onLoad = (data, error) => {
     if (data) {
-      const rhymes = shuffle(data.rhymes);
+      // turn off shuffle for now
+      // const rhymes = shuffle(data.rhymes);
+      const rhymes = data.rhymes;
+      console.log(data.rhymes);
       const { dispatch } = this.props.context;
       dispatch({
         type: "LOAD_RHYMES",
@@ -73,7 +76,7 @@ class Freestyle extends Component {
       dispatch({ type: "LOAD_COMPLETE", payload: [false, 1, 1, 1] });
       dispatch({ type: "START", payload: { ready: true } });
       clearInterval(this.intervalId);
-      this.intervalId = setInterval(() => this.tick(), INTERVAL_TIME);
+      //this.intervalId = setInterval(() => this.tick(), INTERVAL_TIME);
     }
   };
 
@@ -98,26 +101,31 @@ class Freestyle extends Component {
         okSetInt: true
       }));
     }
+    e.stopPropagation();
+    this.intervalId = -1;
   }
 
   handleKeyDown = key => {
     switch (key) {
       case "LEFT":
         this.setState((state, props) => ({
-          index: state.index - 1,
+          index: this.state.index - 1,
           okSetInt: true
         }));
         break;
       case "RIGHT":
         this.setState((state, props) => ({
-          index: state.index + 1,
+          index: this.state.index + 1,
           okSetInt: true
         }));
         break;
     }
+    console.log(this.state.index);
   };
 
   tick() {
+    console.log(this.state.index);
+    if (this.intervalId === -1) return;
     if (this.state.index !== this.props.context.rhymes.length - 1) {
       this.setState((prevState, props) => ({
         index: prevState.index + 1

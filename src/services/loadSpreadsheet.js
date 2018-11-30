@@ -4,12 +4,11 @@ import config from "../config";
  * Get the right values from it and assign.
  */
 export async function loadSpreadsheet(callback, spId, shId) {
-  console.log(shId + "!C2:E");
   window.gapi.client.load("sheets", "v4", () => {
     window.gapi.client.sheets.spreadsheets.values
       .get({
         spreadsheetId: spId,
-        range: "!C4:H"
+        range: "!C5:H"
       })
       .then(
         response => {
