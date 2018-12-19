@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 
 const Context = React.createContext();
 
@@ -52,7 +53,8 @@ const reducer = (state, action) => {
         sheet: "",
         rhymes: "",
         loading: action.payload[1],
-        shuffle: false
+        shuffle: false,
+        spId: ""
       };
 
     case "SETTINGS":
@@ -96,4 +98,4 @@ export class Provider extends Component {
   }
 }
 
-export const Consumer = Context.Consumer;
+export const Consumer = withRouter(Context.Consumer);

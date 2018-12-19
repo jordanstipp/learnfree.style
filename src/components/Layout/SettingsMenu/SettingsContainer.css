@@ -4,6 +4,8 @@
   width: 25vw;
   height: 30vw;
 
+  font-size: 4vw;
+
   position: absolute;
   z-index: 10;
 
@@ -11,14 +13,15 @@
   right: 0;
   margin: auto;
 }
-
-.SettingsButton {
-  background: white;
-
-  width: 5vw;
-  height: 5vw;
-
-  position: absolute;
+.icon {
+  width: 3vw;
+  height: 3vw;
+  flex-shrink: 1;
+}
+.IconContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
   z-index: 10;
   top: 0;
   right: 0;

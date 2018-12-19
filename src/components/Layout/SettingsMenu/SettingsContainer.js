@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Consumer } from "../../../context";
 import ToggleSwitch from "../../General/ToggleSwitch/index.js";
+import cog from "../../../images/cog.png";
+import exit from "../../../images/exit.png";
 
 import "./SettingsContainer.css";
 
@@ -23,7 +25,20 @@ class SettingsContainer extends Component {
           const { helpers, definition } = value;
           return (
             <div>
-              <div className="SettingsButton" onClick={this.openMenu} />
+              <div className="IconContainer">
+                <img
+                  src={exit}
+                  alt="Exit"
+                  className="icon"
+                  onClick={this.props.exitSession}
+                />
+                <img
+                  src={cog}
+                  alt="Settings"
+                  className="icon"
+                  onClick={this.openMenu}
+                />
+              </div>
               {menuOpen && (
                 <div className="SettingsContainer">
                   <ToggleSwitch

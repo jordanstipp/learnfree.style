@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./css/TextInputGroup.css";
 
 const TextInputGroup = ({
   label,
@@ -11,7 +12,7 @@ const TextInputGroup = ({
   error
 }) => {
   return (
-    <div className="form-group">
+    <div className="container">
       <label htmlFor={name}>{label}</label>
       <input
         type={type}

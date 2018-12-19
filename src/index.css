@@ -7,24 +7,36 @@ body {
   text-align: center;
   background-color: black;
 }
+.container {
+  background-color: black;
+  font-family: "Century Gothic";
+  font-size: 3.5rem;
+  font-weight: bold;
+  text-transform: lowercase;
+
+  height: 100%;
+  margin: auto 0;
+
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  font-size: 1em;
+}
+.App-intro {
+  font-size: large;
+}
+.route {
+  flex-basis: 50%;
+}
+Switch {
+  margin: auto;
+}
 a {
   text-decoration: none;
   margin: 0 auto;
   color: white;
 }
-
-.App {
-  margin: 0 auto;
-  color: white;
-}
-
 a:hover {
   color: #ff5722;
-}
-
-.line {
-  background-color: #ff5722;
-
-  height: 0.5rem;
-  width: 100%;
 }

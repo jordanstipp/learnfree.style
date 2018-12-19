@@ -19,67 +19,28 @@ class Freestyle extends Component {
     super(props);
     this.intervalId;
   }
-
+  ////////////////////////////////////////////////////////////////////////////////////
   state = {
     currentRhyme: "",
     okSetInt: false,
     index: 0
   };
-
+  ////////////////////////////////////////////////////////////////////////////////////
   componentDidUpdate() {
-    if (this.props.context.spId != "" && this.props.context.loading) {
-      window.gapi.load("client", this.initClient);
-      document.addEventListener("keyup", this.handleKey.bind(this));
-    }
-
     if (this.state.okSetInt) {
       clearInterval(this.intervalId);
-      //this.intervalId = setInterval(() => this.tick(), INTERVAL_TIME);
     }
   }
-
+  ////////////////////////////////////////////////////////////////////////////////////
   componentWillUnmount() {
-    const { dispatch } = this.props.context;
-    dispatch({ type: "DELETE_LIST", payload: [[], true] });
     clearInterval(this.intervalId);
   }
-
-  initClient = () => {
-    // 2. Initialize the JavaScript client library.
-    window.gapi.client
-      .init({
-        apiKey: config.apiKey,
-        // Your API key will be automatically added to the Discovery Document URLs.
-        discoveryDocs: config.discoveryDocs
-      })
-      .then(() => {
-        // 3. Initialize and make the API request.
-        loadSpreadsheet(
-          this.onLoad,
-          this.props.context.spId,
-          this.props.context.shId
-        );
-      });
-  };
-
-  onLoad = (data, error) => {
-    if (data) {
-      // turn off shuffle for now
-      // const rhymes = shuffle(data.rhymes);
-      const rhymes = data.rhymes;
-      console.log(data.rhymes);
-      const { dispatch } = this.props.context;
-      dispatch({
-        type: "LOAD_RHYMES",
-        payload: [rhymes, 1, 1]
-      });
-      dispatch({ type: "LOAD_COMPLETE", payload: [false, 1, 1, 1] });
-      dispatch({ type: "START", payload: { ready: true } });
-      clearInterval(this.intervalId);
-      //this.intervalId = setInterval(() => this.tick(), INTERVAL_TIME);
-    }
-  };
-
+  ///////////////////////////////////////////////////////////////////////////////////
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleKey.bind(this));
+    clearInterval(this.intervalId);
+  }
+  //////////////////////////////////////////////////////////////////////////////////
   handleKey(e) {
     if (e.keyCode === 37 && this.state.index !== 0) {
       clearInterval(this.intervalId);
@@ -104,17 +65,17 @@ class Freestyle extends Component {
     e.stopPropagation();
     this.intervalId = -1;
   }
-
+  ////////////////////////////////////////////////////////////////////////////////////
   handleKeyDown = key => {
     switch (key) {
       case "LEFT":
-        this.setState((state, props) => ({
+        this.setState(prevState => ({
           index: this.state.index - 1,
           okSetInt: true
         }));
         break;
       case "RIGHT":
-        this.setState((state, props) => ({
+        this.setState(prevState => ({
           index: this.state.index + 1,
           okSetInt: true
         }));
@@ -122,9 +83,8 @@ class Freestyle extends Component {
     }
     console.log(this.state.index);
   };
-
+  ////////////////////////////////////////////////////////////////////////////////////
   tick() {
-    console.log(this.state.index);
     if (this.intervalId === -1) return;
     if (this.state.index !== this.props.context.rhymes.length - 1) {
       this.setState((prevState, props) => ({
@@ -135,39 +95,36 @@ class Freestyle extends Component {
         index: 0
       }));
     }
+    console.log(this.state.index);
   }
+  ////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////
 
   render() {
     const { currentRhyme } = this.state;
     return (
       <Consumer>
         {value => {
-          const { sheet, loading, rhymes } = value;
-          if (sheet) {
-            return !loading ? (
-              <div className="container">
-                <Sound
-                  url="advancement.mp3"
-                  playStatus={Sound.status.PLAYING}
-                  playbackRate={1}
-                  loop={true}
-                />
-                <SettingsContainer />
-                <Rhyme rhyme={this.props.context.rhymes[this.state.index]} />
-              </div>
-            ) : (
-              <div className="container">
-                <Sound url="advancement.mp3" playStatus={Sound.status.PAUSED} />
-                <LoadingAnim />
-              </div>
-            );
-          } else {
-            return (
-              <div className="container">
-                <SelectForm />
-              </div>
-            );
-          }
+          const { loading } = value;
+          return !loading ? (
+            <div>
+              <Sound
+                url="advancement.mp3"
+                playStatus={Sound.status.PLAYING}
+                playbackRate={1}
+                loop={true}
+              />
+              <SettingsContainer exitSession={this.props.exitSession} />
+              <Rhyme
+                className="container"
+                rhyme={this.props.rhymes[this.state.index]}
+              />
+            </div>
+          ) : (
+            <div className="container">
+              <Sound url="advancement.mp3" playStatus={Sound.status.PAUSED} />
+            </div>
+          );
         }}
       </Consumer>
     );

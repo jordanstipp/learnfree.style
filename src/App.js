@@ -1,11 +1,17 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  NavLink,
+  Redirect
+} from "react-router-dom";
 import Header from "./components/Layout/Header";
-import Modes from "./components/Layout/Activities/Modes";
+import Home from "./components/Pages/Home/index";
 import Freestyle from "./components/Pages/Freestyle/Freestyle";
 import NotFound from "./components/Pages/NotFound";
 
-import "./App.css";
+import "./index.css";
 
 import { Provider } from "./context";
 
@@ -14,13 +20,15 @@ class App extends Component {
     return (
       <Provider>
         <Router>
-          <div className="App">
+          <div className="container">
             <Header className="title" branding="LearnFreestyle" />
-            <Switch>
-              <Route exact path="/" component={Modes} />
-              <Route exact path="/freestyle" component={Freestyle} />
-              <Route component={NotFound} />
-            </Switch>
+            <div className="container">
+              <Switch>
+                <Route className="route" exact path="/" component={Home} />
+                <Route component={NotFound} />
+                <Redirect from="*" to="/" />
+              </Switch>
+            </div>
           </div>
         </Router>
       </Provider>

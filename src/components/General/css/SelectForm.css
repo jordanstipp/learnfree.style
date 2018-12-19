@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  align-items: center;
+  flex-basis: 80%;
+
+  margin: auto;
+}
+
+.container form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+
+  color: white;
+}
+
+.container input[type="submit"] {
+  max-width: 4em;
+}

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Consumer } from "../../context";
 import TextInputGroup from "../Layout/TextInputGroup";
+import { withRouter } from "react-router-dom";
+import "./css/SelectForm.css";
 
 class SelectForm extends Component {
   state = {
@@ -58,4 +60,4 @@ class SelectForm extends Component {
   }
 }
 
-export default SelectForm;
+export default withRouter(SelectForm);
