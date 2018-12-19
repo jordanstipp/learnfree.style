@@ -77,14 +77,12 @@ class Home extends Component {
         {value => {
           const { sheet, loading, rhymes } = value;
           if (sheet) {
-            console.log(sheet);
             return (
-              <div>
+              <div className="activity">
                 <Freestyle rhymes={rhymes} exitSession={this.exitSession} />
               </div>
             );
           } else {
-            console.log(sheet + "  wrong");
             return (
               <div className="container">
                 <SelectForm />
