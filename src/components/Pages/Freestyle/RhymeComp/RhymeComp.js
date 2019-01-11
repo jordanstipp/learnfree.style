@@ -7,10 +7,8 @@ const RhymeComp = props => {
     <Consumer>
       {value => {
         return (
-          <div>
-            <span className="rhymeComp body">
-              <p>{content}</p>
-            </span>
+          <div className="rhymeComp body">
+            <p>{content}</p>
           </div>
         );
       }}

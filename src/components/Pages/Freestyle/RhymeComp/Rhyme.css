@@ -1,24 +1,18 @@
 .rhyme {
-  font-size: 10rem;
-  position: relative;
+  font-size: 10vw;
   font-weight: bold;
   font-style: italic;
   color: #ff5722;
+  margin: 0;
 }
 .rhymeComp {
-  font-size: 2rem;
   color: white;
-  margin: 1rem;
-  display: inline-block;
-  font-style: italic;
-}
-.head {
-  font-weight: bold;
-  width: 20%;
-}
-.body {
-  display: inline-block;
+  margin: 0;
+  display: inline;
   font-style: italic;
   width: 70%;
-  min-height: 100%;
+  font-size: 2vw;
+}
+.rhyme-container {
+  max-height: 5%;
 }

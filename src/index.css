@@ -19,10 +19,10 @@ body {
 
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
-.title {
-  font-size: 1em;
-}
+
 .App-intro {
   font-size: large;
 }
@@ -32,10 +32,14 @@ body {
 Switch {
   margin: auto;
 }
+
 a {
   text-decoration: none;
   margin: 0 auto;
+  padding: 0;
   color: white;
+  font-size: 3vw;
+  flex-basis: 50%;
 }
 a:hover {
   color: #ff5722;

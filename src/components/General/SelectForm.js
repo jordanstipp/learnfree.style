@@ -37,7 +37,7 @@ class SelectForm extends Component {
         {value => {
           const { dispatch } = value;
           return (
-            <div className="container">
+            <div className="select-form">
               <form onSubmit={this.onSubmit.bind(this, dispatch)}>
                 {/* <select>
                   <option value=""> Phase 1 </option>

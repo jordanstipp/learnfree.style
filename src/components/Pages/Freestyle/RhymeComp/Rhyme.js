@@ -9,11 +9,6 @@ class Rhyme extends Component {
     index: 0
   };
 
-  // onClick = () => {
-  //   const { dispatch } = this.props.context;
-  //   dispatch({ type: "SETTINGS", payload: setting });
-  // };
-
   render() {
     return (
       <Consumer>
@@ -21,7 +16,7 @@ class Rhyme extends Component {
           const { rhyme } = this.props;
           const { helpers, definition } = value;
           return (
-            <div>
+            <div className="rhyme-container">
               {helpers && (
                 <RhymeComp
                   className="subRhyme"

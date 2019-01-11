@@ -27,16 +27,16 @@ class SettingsContainer extends Component {
             <div>
               <div className="IconContainer">
                 <img
-                  src={exit}
-                  alt="Exit"
-                  className="icon"
-                  onClick={this.props.exitSession}
-                />
-                <img
                   src={cog}
                   alt="Settings"
                   className="icon"
                   onClick={this.openMenu}
+                />
+                <img
+                  src={exit}
+                  alt="Exit"
+                  className="icon"
+                  onClick={this.props.exitSession}
                 />
               </div>
               {menuOpen && (

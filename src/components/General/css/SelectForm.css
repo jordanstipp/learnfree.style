@@ -1,20 +1,12 @@
-.container {
+.select-form {
   display: flex;
-  align-items: center;
-  flex-basis: 80%;
-
-  margin: auto;
-}
-
-.container form {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-evenly;
-
+  flex-direction: column;
   color: white;
+  min-width: 0;
+
+  font-size: 7vw;
 }
 
-.container input[type="submit"] {
+.select-form input[type="submit"] {
   max-width: 4em;
 }

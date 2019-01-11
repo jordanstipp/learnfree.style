@@ -99,24 +99,16 @@ class Freestyle extends Component {
   ////////////////////////////////////////////////////////////////////////////////////
 
   render() {
-    const { currentRhyme } = this.state;
+    const { currentRhyme, index } = this.state;
     return (
       <Consumer>
         {value => {
           const { loading } = value;
           return !loading ? (
-            <div>
-              <Sound
-                url="advancement.mp3"
-                playStatus={Sound.status.PLAYING}
-                playbackRate={1}
-                loop={true}
-              />
+            <div className="container">
+              <Sound url="advancement.mp3" playStatus={Sound.status.PLAYING} />
               <SettingsContainer exitSession={this.props.exitSession} />
-              <Rhyme
-                className="container"
-                rhyme={this.props.rhymes[this.state.index]}
-              />
+              <Rhyme rhyme={this.props.rhymes[index]} />
             </div>
           ) : (
             <div className="container">
