@@ -49,6 +49,7 @@ class SelectForm extends Component {
                   value={url}
                   onChange={this.onChange}
                   error={errors.url}
+                  type="text"
                 />
                 <input type="submit" value="Submit" />
               </form>

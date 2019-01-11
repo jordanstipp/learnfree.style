@@ -10,3 +10,14 @@
 .select-form input[type="submit"] {
   max-width: 4em;
 }
+
+.select-form input[type="text"] {
+  font-size: 3vw;
+}
+
+.text-input-group input {
+  width: 90vw;
+  height: 6vw;
+  padding: 1vw;
+  margin-bottom: 3vw;
+}
