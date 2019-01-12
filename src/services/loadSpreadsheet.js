@@ -19,7 +19,8 @@ export async function loadSpreadsheet(callback, spId, shId) {
                 rhyme: rhymeGroup[0],
                 definition: rhymeGroup[1],
                 helpers:
-                  rhymeGroup[3] + ", " + rhymeGroup[4] + ", " + rhymeGroup[5]
+                  rhymeGroup[3] + ", " + rhymeGroup[4] + ", " + rhymeGroup[5],
+                sentence: rhymeGroup[2]
               })) || [];
             callback({
               rhymes

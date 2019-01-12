@@ -71,6 +71,10 @@ class Home extends Component {
     console.log("exit");
   };
 
+  selectForm = () => {
+    return <SelectForm />;
+  };
+
   render() {
     return (
       <Consumer>
@@ -83,11 +87,7 @@ class Home extends Component {
               </div>
             );
           } else {
-            return (
-              <div className="container">
-                <SelectForm />
-              </div>
-            );
+            return <div className="container">{this.selectForm()}</div>;
           }
         }}
       </Consumer>

@@ -22,7 +22,7 @@ class SettingsContainer extends Component {
     return (
       <Consumer>
         {value => {
-          const { helpers, definition } = value;
+          const { helpers, definition, mode } = value;
           return (
             <div>
               <div className="IconContainer">
@@ -50,6 +50,11 @@ class SettingsContainer extends Component {
                     enabled={enabled}
                     setting="definition"
                     checked={definition}
+                  />
+                  <ToggleSwitch
+                    enabled={!enabled}
+                    setting="Practice Mode"
+                    checked={mode}
                   />
                 </div>
               )}

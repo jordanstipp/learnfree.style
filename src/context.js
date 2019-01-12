@@ -68,6 +68,11 @@ const reducer = (state, action) => {
           ...state,
           definition: !state.definition
         };
+      } else if (action.payload === "Practice Mode") {
+        return {
+          ...state,
+          mode: !state.mode
+        };
       }
     default:
       return state;
@@ -84,6 +89,7 @@ export class Provider extends Component {
     sheet: "",
     helpers: true,
     definition: true,
+    mode: false,
     dispatch: action => {
       this.setState(state => reducer(state, action));
     }

@@ -3,6 +3,7 @@ import Sound from "react-sound";
 
 import { Consumer } from "../../../context";
 import Rhyme from "./RhymeComp/Rhyme";
+import PracticeRhyme from "./RhymeComp/PracticeRhyme";
 
 import config from "../../../config";
 import { loadSpreadsheet } from "../../../services/loadSpreadsheet";
@@ -98,18 +99,30 @@ class Freestyle extends Component {
   ////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////
 
+  freestyleMode = (index, mode) => {
+    return !mode ? (
+      <div className="container">
+        <Sound url="advancement.mp3" playStatus={Sound.status.PLAYING} />
+        <SettingsContainer exitSession={this.props.exitSession} />
+        <Rhyme rhyme={this.props.rhymes[index]} />
+      </div>
+    ) : (
+      <div className="container">
+        <Sound url="advancement.mp3" playStatus={Sound.status.PLAYING} />
+        <SettingsContainer exitSession={this.props.exitSession} />
+        <PracticeRhyme rhyme={this.props.rhymes[index]} />
+      </div>
+    );
+  };
+
   render() {
     const { currentRhyme, index } = this.state;
     return (
       <Consumer>
         {value => {
-          const { loading } = value;
+          const { loading, mode } = value;
           return !loading ? (
-            <div className="container">
-              <Sound url="advancement.mp3" playStatus={Sound.status.PLAYING} />
-              <SettingsContainer exitSession={this.props.exitSession} />
-              <Rhyme rhyme={this.props.rhymes[index]} />
-            </div>
+            <div>{this.freestyleMode(index, mode)}</div>
           ) : (
             <div className="container">
               <Sound url="advancement.mp3" playStatus={Sound.status.PAUSED} />
