@@ -13,27 +13,34 @@ const reducer = (state, action) => {
 
     case "GET_ID":
       //regex for strings
-      var spreadSheetId = action.payload.url.match(
-        "/spreadsheets/d/([a-zA-Z0-9-_]+)"
-      );
-      if (spreadSheetId) {
+      if (action.payload.url != null) {
+        var spreadSheetId = action.payload.url.match(
+          "/spreadsheets/d/([a-zA-Z0-9-_]+)"
+        );
+      }
+      if (spreadSheetId != null) {
         spreadSheetId = spreadSheetId[0];
+        spreadSheetId = spreadSheetId.replace("/spreadsheets/d/", "");
+
+        var sheetId = action.payload.url.match("[#&]gid=([0-9]+)");
+
+        if (sheetId) {
+          sheetId = sheetId[0];
+        }
+        sheetId = sheetId.replace("#gid=", "");
+
+        sheetId.slice(5);
+        return {
+          ...state,
+          spId: spreadSheetId,
+          shId: sheetId
+        };
+      } else {
+        return {
+          ...state,
+          error: true
+        };
       }
-      spreadSheetId = spreadSheetId.replace("/spreadsheets/d/", "");
-
-      var sheetId = action.payload.url.match("[#&]gid=([0-9]+)");
-
-      if (sheetId) {
-        sheetId = sheetId[0];
-      }
-      sheetId = sheetId.replace("#gid=", "");
-
-      sheetId.slice(5);
-      return {
-        ...state,
-        spId: spreadSheetId,
-        shId: sheetId
-      };
 
     case "LOAD_RHYMES":
       return {
@@ -55,6 +62,12 @@ const reducer = (state, action) => {
         loading: action.payload[1],
         shuffle: false,
         spId: ""
+      };
+
+    case "ERR":
+      return {
+        ...state,
+        error: false
       };
 
     case "SETTINGS":
@@ -90,6 +103,7 @@ export class Provider extends Component {
     helpers: true,
     definition: true,
     mode: false,
+    error: false,
     dispatch: action => {
       this.setState(state => reducer(state, action));
     }

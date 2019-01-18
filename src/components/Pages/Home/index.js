@@ -20,7 +20,7 @@ class Home extends Component {
     super(props);
   }
 
-  state = {};
+  state = { error: false };
 
   componentDidUpdate() {
     if (this.props.context.spId != "" && this.props.context.loading) {
@@ -46,8 +46,12 @@ class Home extends Component {
       });
   };
 
-  onLoad = (data, error) => {
-    if (data) {
+  onLoad = (data, e) => {
+    if (!data) {
+      this.setState((prevState, props) => {
+        error: e;
+      });
+    } else if (data) {
       // turn off shuffle for now
       // const rhymes = shuffle(data.rhymes);
       const rhymes = data.rhymes;
@@ -68,11 +72,10 @@ class Home extends Component {
   exitSession = () => {
     const { dispatch } = this.props.context;
     dispatch({ type: "DELETE_LIST", payload: [[], true] });
-    console.log("exit");
   };
 
   selectForm = () => {
-    return <SelectForm />;
+    return <SelectForm error={this.props.context.error} />;
   };
 
   onClick = (textContent, dispatch, e) => {

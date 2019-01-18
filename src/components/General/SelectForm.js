@@ -17,8 +17,9 @@ class SelectForm extends Component {
     const { url } = this.state;
 
     //check for errors
-    if (url === "") {
-      this.setState({ errors: { url: "URL is required" } });
+    if (url === "" || this.props.error) {
+      this.setState({ errors: { url: "Please Enter a Valid URL" } });
+      dispatch({ type: "ERR" });
       return;
     }
 
