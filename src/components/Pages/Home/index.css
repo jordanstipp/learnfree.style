@@ -1,6 +1,16 @@
 .activity {
   width: 100%;
 }
-.container {
-  display: flex;
+.button {
+  max-width: 4em;
+  color: rgb(231, 231, 231);
+  background-color: black;
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  border: solid 0.5vw rgb(233, 233, 233);
+  cursor: pointer;
+}
+
+.button:hover {
+  border: solid 0.5vw #ff5722;
+  color: #ff5722;
 }

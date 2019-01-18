@@ -7,12 +7,17 @@
 }
 .rhymeComp {
   color: white;
-  margin: 0;
-  display: inline;
+  margin: 0 auto;
   font-style: italic;
-  width: 70%;
+  width: 80vw;
   font-size: 2vw;
 }
 .rhyme-container {
   max-height: 5%;
+}
+
+.sentence {
+  font-size: 5vw;
+  color: #ff5722;
+  font-weight: bold;
 }

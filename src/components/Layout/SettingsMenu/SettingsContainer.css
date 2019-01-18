@@ -1,14 +1,13 @@
 .SettingsContainer {
-  background: rgb(252, 137, 137);
-
-  width: 25vw;
-  height: 30vw;
-
+  background: white;
+  max-width: 40vw;
+  opacity: 0.95;
+  border-radius: 25px 25px 25px 25px;
   font-size: 4vw;
-
   position: absolute;
-  z-index: 10;
-
+  display: inline-flex;
+  flex-direction: column;
+  align-self: flex-start;
   left: 0;
   right: 0;
   margin: auto;
@@ -22,9 +21,9 @@
 .IconContainer {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   z-index: 10;
   top: 0;
   right: 0;
-  width: 80vw;
+  width: 100vw;
 }

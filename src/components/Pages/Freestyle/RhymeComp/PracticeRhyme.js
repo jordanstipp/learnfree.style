@@ -12,8 +12,11 @@ class PracticeRhyme extends Component {
           const { rhyme } = this.props;
           const { helpers, definition } = value;
           return (
-            <div className="rhyme-container">
-              <h1 className="rhyme">{rhyme.sentence}</h1>
+            <div className="practice-container">
+              <h1 className="sentence">
+                {rhyme.sentence}
+                {"_____________ " + rhyme.rhymeGroup[3]}
+              </h1>
             </div>
           );
         }}

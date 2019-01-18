@@ -20,15 +20,13 @@ class App extends Component {
     return (
       <Provider>
         <Router>
-          <div className="container">
+          <div className="container" id="appContainer">
             <Header className="title" branding="LearnFreestyle" />
-            <div className="container">
-              <Switch>
-                <Route className="route" exact path="/" component={Home} />
-                <Route component={NotFound} />
-                <Redirect from="*" to="/" />
-              </Switch>
-            </div>
+            <Switch>
+              <Route className="route" exact path="/" component={Home} />
+              <Route component={NotFound} />
+              <Redirect from="*" to="/" />
+            </Switch>
           </div>
         </Router>
       </Provider>

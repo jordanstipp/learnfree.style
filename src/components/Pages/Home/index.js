@@ -75,11 +75,23 @@ class Home extends Component {
     return <SelectForm />;
   };
 
+  onClick = (textContent, dispatch, e) => {
+    if (textContent === "Life") {
+      const urlPayload = {
+        url:
+          "https://docs.google.com/spreadsheets/d/1Mv0mtgmlr7__8V4GoXjWy2bzuiAF2BDhuHt2fh_ssZg/edit#gid=0",
+        ready: "ready"
+      };
+
+      dispatch({ type: "GET_ID", payload: urlPayload });
+    }
+  };
+
   render() {
     return (
       <Consumer>
         {value => {
-          const { sheet, loading, rhymes } = value;
+          const { sheet, loading, rhymes, dispatch } = value;
           if (sheet) {
             return (
               <div className="activity">
@@ -87,7 +99,17 @@ class Home extends Component {
               </div>
             );
           } else {
-            return <div className="container">{this.selectForm()}</div>;
+            return (
+              <div className="container">
+                {this.selectForm()}
+                <a
+                  className="button"
+                  onClick={this.onClick.bind(this, "Life", dispatch)}
+                >
+                  Life
+                </a>
+              </div>
+            );
           }
         }}
       </Consumer>

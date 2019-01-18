@@ -43,25 +43,12 @@ class Freestyle extends Component {
   }
   //////////////////////////////////////////////////////////////////////////////////
   handleKey(e) {
-    if (e.keyCode === 37 && this.state.index !== 0) {
+    if (e.keyCode === 37) {
       clearInterval(this.intervalId);
       this.handleKeyDown("LEFT");
-    } else if (
-      e.keyCode === 39 &&
-      this.state.index !== this.props.context.rhymes.length - 1
-    ) {
+    } else if (e.keyCode === 39) {
       clearInterval(this.intervalId);
       this.handleKeyDown("RIGHT");
-    } else if (this.state.index === 0 && !this.props.context.loading) {
-      this.setState((state, props) => ({
-        index: this.props.context.rhymes.length - 1,
-        okSetInt: true
-      }));
-    } else {
-      this.setState((state, props) => ({
-        index: 0,
-        okSetInt: true
-      }));
     }
     e.stopPropagation();
     this.intervalId = -1;
@@ -70,16 +57,30 @@ class Freestyle extends Component {
   handleKeyDown = key => {
     switch (key) {
       case "LEFT":
-        this.setState(prevState => ({
-          index: this.state.index - 1,
-          okSetInt: true
-        }));
+        if (this.state.index === 0) {
+          this.setState((state, props) => ({
+            index: this.props.context.rhymes.length - 1,
+            okSetInt: true
+          }));
+        } else {
+          this.setState(prevState => ({
+            index: this.state.index - 1,
+            okSetInt: true
+          }));
+        }
         break;
       case "RIGHT":
-        this.setState(prevState => ({
-          index: this.state.index + 1,
-          okSetInt: true
-        }));
+        if (this.state.index + 1 === this.props.context.rhymes.length - 1) {
+          this.setState((state, props) => ({
+            index: 0,
+            okSetInt: true
+          }));
+        } else {
+          this.setState(prevState => ({
+            index: this.state.index + 1,
+            okSetInt: true
+          }));
+        }
         break;
     }
   };

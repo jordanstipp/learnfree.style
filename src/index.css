@@ -14,23 +14,20 @@ body {
   font-weight: bold;
   text-transform: lowercase;
 
-  height: 100%;
   margin: auto 0;
 
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+}
+
+#appContainer {
+  height: 100vh;
+  max-width: 100vw;
 }
 
 .App-intro {
   font-size: large;
-}
-.route {
-  flex-basis: 50%;
-}
-Switch {
-  margin: auto;
 }
 
 a {
@@ -39,7 +36,6 @@ a {
   padding: 0;
   color: white;
   font-size: 3vw;
-  flex-basis: 50%;
 }
 a:hover {
   color: #ff5722;

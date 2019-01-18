@@ -43,7 +43,6 @@ class SelectForm extends Component {
                   <option value=""> Phase 1 </option>
                 </select> */}
                 <TextInputGroup
-                  label="Sheets URL"
                   name="url"
                   placeholder="Enter Google Sheets URL..."
                   value={url}
