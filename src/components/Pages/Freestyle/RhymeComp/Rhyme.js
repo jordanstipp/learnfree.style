@@ -30,7 +30,7 @@ class Rhyme extends Component {
                */}
               {definition && (
                 <RhymeComp
-                  className="subRhyme"
+                  className="subRhyme pbottom"
                   type="defintion"
                   content={rhyme.definition}
                   onClick={this.onClick}

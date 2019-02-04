@@ -12,6 +12,7 @@ import LoadingAnim from "../../General/LoadingAnim";
 import Freestyle from "../Freestyle/Freestyle";
 import "./index.css";
 import SettingsContainer from "../../Layout/SettingsMenu/SettingsContainer";
+import SimpleSlider from "../../Layout/SimpleSlider";
 
 const INTERVAL_TIME = 7000;
 
@@ -85,6 +86,45 @@ class Home extends Component {
           "https://docs.google.com/spreadsheets/d/1Mv0mtgmlr7__8V4GoXjWy2bzuiAF2BDhuHt2fh_ssZg/edit#gid=0",
         ready: "ready"
       };
+      dispatch({ type: "GET_ID", payload: urlPayload });
+    } else if (textContent === "Earth") {
+      const urlPayload = {
+        url:
+          "https://docs.google.com/spreadsheets/d/1wBbPAN4qL_9UrlKUJ8bupj_xpRo4Rb88YiBQts1NP2g/edit#gid=0",
+        ready: "ready"
+      };
+
+      dispatch({ type: "GET_ID", payload: urlPayload });
+    } else if (textContent === "Greek") {
+      const urlPayload = {
+        url:
+          "https://docs.google.com/spreadsheets/d/1sW7FLa1O6-cmgU0nTJ-C5f9pUL1u_p_c1oLhEazwvpU/edit#gid=0",
+        ready: "ready"
+      };
+
+      dispatch({ type: "GET_ID", payload: urlPayload });
+    } else if (textContent === "Physics") {
+      const urlPayload = {
+        url:
+          "https://docs.google.com/spreadsheets/d/1Ej1kyIrL6AzBMUOK44nXQctGnr5lIhlCbumObSQsArM/edit#gid=0",
+        ready: "ready"
+      };
+
+      dispatch({ type: "GET_ID", payload: urlPayload });
+    } else if (textContent === "Science") {
+      const urlPayload = {
+        url:
+          "https://docs.google.com/spreadsheets/d/1GfZ3O93O_67DEw1IVxfIgrrtksBefAqFDjvItyT__Lk/edit#gid=0",
+        ready: "ready"
+      };
+
+      dispatch({ type: "GET_ID", payload: urlPayload });
+    } else if (textContent === "Ancient") {
+      const urlPayload = {
+        url:
+          "https://docs.google.com/spreadsheets/d/1jJE4gBiy_ktjDgTXHMvtucCX6QtkOEVBD7HDC6yhExM/edit#gid=0",
+        ready: "ready"
+      };
 
       dispatch({ type: "GET_ID", payload: urlPayload });
     }
@@ -105,12 +145,47 @@ class Home extends Component {
             return (
               <div className="container">
                 {this.selectForm()}
-                <a
-                  className="button"
-                  onClick={this.onClick.bind(this, "Life", dispatch)}
-                >
-                  Life
-                </a>
+                <div>
+                  <h3 className="container">or select from the lists below:</h3>
+                  <div className="preselect">
+                    <a
+                      className="button"
+                      onClick={this.onClick.bind(this, "Life", dispatch)}
+                    >
+                      Life
+                    </a>
+                    <a
+                      className="button"
+                      onClick={this.onClick.bind(this, "Earth", dispatch)}
+                    >
+                      Earth & Space
+                    </a>
+                    <a
+                      className="button"
+                      onClick={this.onClick.bind(this, "Physics", dispatch)}
+                    >
+                      Physics & Chemistry
+                    </a>
+                    <a
+                      className="button"
+                      onClick={this.onClick.bind(this, "Science", dispatch)}
+                    >
+                      Science & Engineering
+                    </a>
+                    <a
+                      className="button"
+                      onClick={this.onClick.bind(this, "Greek", dispatch)}
+                    >
+                      Greek Civilization
+                    </a>
+                    <a
+                      className="button"
+                      onClick={this.onClick.bind(this, "Ancient", dispatch)}
+                    >
+                      Ancient Geography
+                    </a>
+                  </div>
+                </div>
               </div>
             );
           }

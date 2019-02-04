@@ -2,12 +2,22 @@
   width: 100%;
 }
 .button {
-  max-width: 4em;
   color: rgb(231, 231, 231);
   background-color: black;
-  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
   border: solid 0.5vw rgb(233, 233, 233);
   cursor: pointer;
+  margin: 1vh;
+  padding: 1vh;
+  font-size: 2vw;
+  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+}
+
+.preselect {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .button:hover {

@@ -1,0 +1,20 @@
+.ArrowBoard {
+  display: flex;
+  justify-content: space-between;
+}
+
+img {
+  margin-left: 4vh;
+  margin-right: 4vh;
+}
+
+.image-container {
+  width: 6vw;
+}
+
+#tom {
+  width: 100%;
+  height: auto;
+  margin: auto;
+  display: block;
+}

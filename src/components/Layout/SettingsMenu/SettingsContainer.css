@@ -1,5 +1,6 @@
 .SettingsContainer {
   background: white;
+  color: black;
   max-width: 40vw;
   opacity: 0.95;
   border-radius: 25px 25px 25px 25px;
@@ -11,6 +12,11 @@
   left: 0;
   right: 0;
   margin: auto;
+  z-index: 3;
+}
+.SettingsWrapper {
+  backdrop-filter: blur(3px);
+  z-index: 2;
 }
 .icon {
   width: 4vw;

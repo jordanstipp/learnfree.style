@@ -3,16 +3,16 @@
   margin: 0 auto;
   color: white;
   min-width: 0;
-  font-size: 7vw;
-  font-family: "Patrick Hand SC", cursive;
+  font-size: 5vw;
 }
 
 input[type="submit"] {
   max-width: 4em;
   color: rgb(231, 231, 231);
   background-color: black;
-  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  /* border-radius: 255px 15px 225px 15px/15px 225px 15px 255px; */
   border: solid 0.5vw rgb(233, 233, 233);
+  margin-bottom: 1vh;
 }
 
 input[type="submit"]:hover {

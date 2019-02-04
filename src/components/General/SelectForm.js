@@ -45,7 +45,7 @@ class SelectForm extends Component {
                 </select> */}
                 <TextInputGroup
                   name="url"
-                  placeholder="Enter Google Sheets URL..."
+                  placeholder="Enter Custom Sheets URL..."
                   value={url}
                   onChange={this.onChange}
                   error={errors.url}

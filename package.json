@@ -19,7 +19,9 @@
     "react-keydown": "^1.9.7",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
+    "react-slick": "^0.23.2",
     "react-sound": "^1.2.0",
+    "slick-carousel": "^1.8.1",
     "uuid": "^3.3.2",
     "wowjs": "^1.1.3"
   },

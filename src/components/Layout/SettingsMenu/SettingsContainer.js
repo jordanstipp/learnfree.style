@@ -8,12 +8,31 @@ import exit from "../../../images/exit.png";
 import "./SettingsContainer.css";
 
 class SettingsContainer extends Component {
+  componentWillMount() {
+    document.addEventListener("mousedown", this.closeWindow, false);
+  }
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.closeWindow, false);
+  }
+
   state = { enabled: true, menuOpen: false };
 
   openMenu = () => {
     this.setState((prevState, props) => ({
       menuOpen: !prevState.menuOpen
     }));
+  };
+
+  closeWindow = e => {
+    if (!this.state.menuOpen || this.node.contains(e.target)) {
+      return;
+    }
+
+    this.handleClickOutside(e);
+  };
+
+  handleClickOutside = e => {
+    this.openMenu();
   };
 
   render() {
@@ -40,22 +59,27 @@ class SettingsContainer extends Component {
                 />
               </div>
               {menuOpen && (
-                <div className="SettingsContainer">
-                  <ToggleSwitch
-                    enabled={enabled}
-                    setting="helpers"
-                    checked={helpers}
-                  />
-                  <ToggleSwitch
-                    enabled={enabled}
-                    setting="definition"
-                    checked={definition}
-                  />
-                  <ToggleSwitch
-                    enabled={!enabled}
-                    setting="Practice Mode"
-                    checked={mode}
-                  />
+                <div className="SettingsWrapper">
+                  <div
+                    className="SettingsContainer"
+                    ref={node => (this.node = node)}
+                  >
+                    <ToggleSwitch
+                      enabled={enabled}
+                      setting="helpers"
+                      checked={helpers}
+                    />
+                    <ToggleSwitch
+                      enabled={enabled}
+                      setting="definition"
+                      checked={definition}
+                    />
+                    <ToggleSwitch
+                      enabled={!enabled}
+                      setting="Practice Mode"
+                      checked={mode}
+                    />
+                  </div>
                 </div>
               )}
             </div>

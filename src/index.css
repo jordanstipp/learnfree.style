@@ -10,15 +10,16 @@ body {
 .container {
   background-color: black;
   font-family: "Century Gothic";
-  font-size: 3.5rem;
+  font-size: 3.5vw;
   font-weight: bold;
   text-transform: lowercase;
-
+  color: white;
   margin: auto 0;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
+  flex-shrink: 3;
 }
 
 #appContainer {

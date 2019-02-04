@@ -12,6 +12,7 @@ import SelectForm from "../../General/SelectForm";
 import LoadingAnim from "../../General/LoadingAnim";
 import "./css/Freestyle.css";
 import SettingsContainer from "../../Layout/SettingsMenu/SettingsContainer";
+import ArrowBoard from "../../Layout/ArrowBoard";
 
 const INTERVAL_TIME = 7000;
 
@@ -50,9 +51,17 @@ class Freestyle extends Component {
       clearInterval(this.intervalId);
       this.handleKeyDown("RIGHT");
     }
-    e.stopPropagation();
     this.intervalId = -1;
   }
+
+  handleLeftArrow = () => {
+    //clearInterval(this.intervalId);
+    this.handleKeyDown("LEFT");
+  };
+  handleRightArrow = () => {
+    //clearInterval(this.intervalId);
+    this.handleKeyDown("RIGHT");
+  };
   ////////////////////////////////////////////////////////////////////////////////////
   handleKeyDown = key => {
     switch (key) {
@@ -106,10 +115,18 @@ class Freestyle extends Component {
         <Sound url="advancement.mp3" playStatus={Sound.status.PLAYING} />
         <SettingsContainer exitSession={this.props.exitSession} />
         <Rhyme rhyme={this.props.rhymes[index]} />
+        <ArrowBoard
+          clickLeft={this.handleLeftArrow}
+          clickRight={this.handleRightArrow}
+        />
       </div>
     ) : (
       <div className="container">
-        <Sound url="advancement.mp3" playStatus={Sound.status.PLAYING} />
+        <Sound
+          url="advancement.mp3"
+          playStatus={Sound.status.PLAYING}
+          loop={true}
+        />
         <SettingsContainer exitSession={this.props.exitSession} />
         <PracticeRhyme rhyme={this.props.rhymes[index]} />
       </div>

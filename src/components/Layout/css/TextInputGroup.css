@@ -8,6 +8,6 @@ input[type="text"] {
   font-size: 4vw;
   color: #ff5722;
   background-color: black;
-  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  /* border-radius: 255px 15px 225px 15px/15px 225px 15px 255px; */
   border: solid 0.5vw rgb(233, 233, 233);
 }
