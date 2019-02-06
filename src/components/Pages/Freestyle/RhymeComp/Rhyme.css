@@ -25,3 +25,29 @@
   color: #ff5722;
   font-weight: bold;
 }
+
+.practice-container {
+  margin: 5vh;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  font-style: italic;
+}
+.practice-container-child {
+  margin: 5vh;
+  margin-right: 0;
+  margin-left: 0;
+  display: flex;
+  flex-direction: row;
+}
+h1 {
+  font-size: 2.5vw;
+  font-family: "Century Gothic";
+  font-weight: bold;
+}
+#underscore {
+  color: #ff5722;
+  margin-right: 1vw;
+}

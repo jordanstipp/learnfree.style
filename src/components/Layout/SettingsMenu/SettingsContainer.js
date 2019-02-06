@@ -1,47 +1,49 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { Consumer } from "../../../context";
-import ToggleSwitch from "../../General/ToggleSwitch/index.js";
-import cog from "../../../images/cog.png";
-import exit from "../../../images/exit.png";
+import React, { Component } from "react"
+import PropTypes from "prop-types"
+import { Consumer } from "../../../context"
+import ToggleSwitch from "../../General/ToggleSwitch/index.js"
+import cog from "../../../images/cog.png"
+import exit from "../../../images/exit.png"
 
-import "./SettingsContainer.css";
+import "./SettingsContainer.css"
 
 class SettingsContainer extends Component {
   componentWillMount() {
-    document.addEventListener("mousedown", this.closeWindow, false);
+    document.addEventListener("mousedown", this.closeWindow, false)
   }
   componentWillUnmount() {
-    document.removeEventListener("mousedown", this.closeWindow, false);
+    document.removeEventListener("mousedown", this.closeWindow, false)
   }
 
-  state = { enabled: true, menuOpen: false };
+  state = { enabled: true, menuOpen: false }
 
   openMenu = () => {
     this.setState((prevState, props) => ({
-      menuOpen: !prevState.menuOpen
-    }));
-  };
+      menuOpen: !this.state.menuOpen
+    }))
+  }
 
   closeWindow = e => {
     if (!this.state.menuOpen || this.node.contains(e.target)) {
-      return;
+      return
     }
 
-    this.handleClickOutside(e);
-  };
+    if (this.cog.contains(e.target)) return
+
+    this.handleClickOutside(e)
+  }
 
   handleClickOutside = e => {
-    this.openMenu();
-  };
+    this.openMenu()
+  }
 
   render() {
-    const { enabled, menuOpen } = this.state;
+    const { enabled, menuOpen } = this.state
 
     return (
       <Consumer>
         {value => {
-          const { helpers, definition, mode } = value;
+          const { helpers, definition, mode } = value
           return (
             <div>
               <div className="IconContainer">
@@ -50,6 +52,7 @@ class SettingsContainer extends Component {
                   alt="Settings"
                   className="icon"
                   onClick={this.openMenu}
+                  ref={node => (this.cog = node)}
                 />
                 <img
                   src={exit}
@@ -83,10 +86,10 @@ class SettingsContainer extends Component {
                 </div>
               )}
             </div>
-          );
+          )
         }}
       </Consumer>
-    );
+    )
   }
 }
 
@@ -94,4 +97,4 @@ export default props => (
   <Consumer>
     {value => <SettingsContainer {...props} context={value} />}
   </Consumer>
-);
+)

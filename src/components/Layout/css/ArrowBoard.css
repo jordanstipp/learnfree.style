@@ -6,6 +6,7 @@
 img {
   margin-left: 4vh;
   margin-right: 4vh;
+  cursor: hand;
 }
 
 .image-container {
@@ -17,4 +18,5 @@ img {
   height: auto;
   margin: auto;
   display: block;
+  cursor: default;
 }
