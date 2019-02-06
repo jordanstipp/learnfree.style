@@ -63,26 +63,39 @@ class SettingsContainer extends Component {
               </div>
               {menuOpen && (
                 <div className="SettingsWrapper">
-                  <div
-                    className="SettingsContainer"
-                    ref={node => (this.node = node)}
-                  >
-                    <ToggleSwitch
-                      enabled={enabled}
-                      setting="helpers"
-                      checked={helpers}
-                    />
-                    <ToggleSwitch
-                      enabled={enabled}
-                      setting="definition"
-                      checked={definition}
-                    />
-                    <ToggleSwitch
-                      enabled={!enabled}
-                      setting="Practice Mode"
-                      checked={mode}
-                    />
-                  </div>
+                  {!mode ? (
+                    <div
+                      className="SettingsContainer"
+                      ref={node => (this.node = node)}
+                    >
+                      <ToggleSwitch
+                        enabled={enabled}
+                        setting="helpers"
+                        checked={helpers}
+                      />
+                      <ToggleSwitch
+                        enabled={enabled}
+                        setting="definition"
+                        checked={definition}
+                      />
+                      <ToggleSwitch
+                        enabled={!enabled}
+                        setting="Practice Mode"
+                        checked={mode}
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      className="SettingsContainer"
+                      ref={node => (this.node = node)}
+                    >
+                      <ToggleSwitch
+                        enabled={!enabled}
+                        setting="Practice Mode"
+                        checked={mode}
+                      />
+                    </div>
+                  )}
                 </div>
               )}
             </div>
